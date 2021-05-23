@@ -17,6 +17,8 @@ class DisplayImagesAdaptor(val photoList: ArrayList<PictureDetailsModel>, val mc
 
     class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val iv_preview_photo = view.findViewById<ImageView>(R.id.iv_preview_photo)
+
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = MyViewHolder(

@@ -1,8 +1,9 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-}
 
+}
+apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
@@ -19,8 +20,12 @@ android {
 
     buildFeatures {
         //for  data binding feature
-       // dataBinding true
+        dataBinding true
     }
+
+   /* dataBinding {
+        enabled true
+    }*/
     buildTypes {
         release {
             minifyEnabled false
@@ -70,5 +75,13 @@ dependencies {
     //picasso library for displaying images in grid view
     implementation 'com.squareup.picasso:picasso:2.71828'
 
+    //room database
+    /* def room_version = "2.3.0"
+     implementation("androidx.room:room-runtime:$room_version")
+     annotationProcessor "androidx.room:room-compiler:$room_version"
+     // To use Kotlin annotation processing tool (kapt)
+     kapt("androidx.room:room-compiler:$room_version")
+     // To use Kotlin Symbolic Processing (KSP)
+     ksp("androidx.room:room-compiler:$room_version")*/
 
 }

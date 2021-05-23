@@ -15,7 +15,7 @@ class SearchInPixabayViewModel(application: Application) : AndroidViewModel(appl
 
     var searchRepository: SearchKeyRepository
     lateinit var searchResultsLivedata: LiveData<ArrayList<PictureDetailsModel>>
-    val context: Context = application.applicationContext
+    val context = application
 
     init {
 

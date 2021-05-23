@@ -14,7 +14,7 @@ class ImageDetailsViewModel(application: Application) : AndroidViewModel(applica
 
     lateinit var downloadStatusLiveData: LiveData<Boolean>
     var downloadImageRepository: DownloadImageRepository
-    val context = application.applicationContext
+    val context =application
 
     init {
         downloadImageRepository = DownloadImageRepository()
@@ -25,10 +25,6 @@ class ImageDetailsViewModel(application: Application) : AndroidViewModel(applica
         if (checkInternet.isNetworkAvailbale(context)) {
             val appContext: Context = getApplication()
             val fileName: List<String> = completeFilePath.split("/get/")
-
-
-
-
             downloadImageRepository.downloadImageToAppSandbox(
                 appContext,
                 fileName.get(1),

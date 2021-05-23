@@ -8,12 +8,15 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.DataBindingUtil.setContentView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.bharadwaja.netmeds.R
 import com.bharadwaja.netmeds.data.models.PictureDetailsModel
+import com.bharadwaja.netmeds.databinding.ActivitySearchInPixabayBinding
 import com.bharadwaja.netmeds.ui.adaptors.DisplayImagesAdaptor
 import com.bharadwaja.netmeds.ui.viewmodels.SearchInPixabayViewModel
 
@@ -27,7 +30,11 @@ class SearchInPixabayActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_search_in_pixabay)
+        // setContentView(R.layout.activity_search_in_pixabay)
+        val binding: ActivitySearchInPixabayBinding =
+            DataBindingUtil.setContentView(this, R.layout.activity_search_in_pixabay)
+
+       // binding.
         photoList = ArrayList()
         val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
         displayImagesAdaptor = DisplayImagesAdaptor(photoList, this)
