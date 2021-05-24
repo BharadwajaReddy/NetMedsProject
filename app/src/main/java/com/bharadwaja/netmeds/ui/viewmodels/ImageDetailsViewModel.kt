@@ -14,27 +14,24 @@ class ImageDetailsViewModel(application: Application) : AndroidViewModel(applica
 
     lateinit var downloadStatusLiveData: LiveData<Boolean>
     var downloadImageRepository: DownloadImageRepository
-    val context =application
+    val context = application
 
     init {
         downloadImageRepository = DownloadImageRepository()
     }
 
     fun downloadFile(completeFilePath: String) {
-        val checkInternet = CheckInternetAvailability()
-        if (checkInternet.isNetworkAvailbale(context)) {
-            val appContext: Context = getApplication()
-            val fileName: List<String> = completeFilePath.split("/get/")
-            downloadImageRepository.downloadImageToAppSandbox(
-                appContext,
-                fileName.get(1),
-                "get/" + fileName.get(1)
-            )
-            downloadStatusLiveData = downloadImageRepository.getFileDownloadStatus()
 
-        } else {
-            Toast.makeText(context, "No Internet Connection", Toast.LENGTH_LONG).show()
-        }
+        val appContext: Context = getApplication()
+        val fileName: List<String> = completeFilePath.split("/get/")
+        downloadImageRepository.downloadImageToAppSandbox(
+            appContext,
+            fileName.get(1),
+            "get/" + fileName.get(1)
+        )
+        downloadStatusLiveData = downloadImageRepository.getFileDownloadStatus()
+
+
     }
 
     fun getDownloadStatus(): LiveData<Boolean> {

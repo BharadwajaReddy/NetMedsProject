@@ -1,12 +1,7 @@
 package com.bharadwaja.netmeds.data.repository
 
 import android.content.Context
-import android.graphics.Bitmap
-import android.os.Build
-import android.os.Environment
 import android.util.Log
-import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.bharadwaja.netmeds.utilities.networking.RetrofitInterface
@@ -21,7 +16,6 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import java.io.*
-import java.lang.Exception
 
 
 class DownloadImageRepository {
@@ -89,10 +83,7 @@ class DownloadImageRepository {
                     while (`is`.read(data).also { count = it } != -1) {
                         os.write(data, 0, count)
                         progress += count
-                        // publishing the progress....
-                        if (filesize > 0) {
-                        } // only if total length is known
-                        // downloadDataProgress.postValue((progress * 100 / filesize))
+
                         Log.d(
                             TAG,
                             "Progress: " + (progress * 100 / filesize)
@@ -120,13 +111,11 @@ class DownloadImageRepository {
         }
 
 
-
     fun DownloadToImages(body: ResponseBody, filename: String) {
         try {
             val path = mContext.getExternalFilesDir("Pixabay")
             val destinationFile = File(path, filename)
-            // Make sure the Pictures directory exists.
-            // path.mkdirs();
+
             var `is`: InputStream? = null
             var os: OutputStream? = null
             try {
@@ -140,10 +129,7 @@ class DownloadImageRepository {
                 while (`is`.read(data).also { count = it } != -1) {
                     os.write(data, 0, count)
                     progress += count
-                    // publishing the progress....
-                    if (filesize > 0) {
-                    } // only if total length is known
-                    // downloadDataProgress.postValue((progress * 100 / filesize))
+
                     Log.d(
                         TAG,
                         "Progress: " + (progress * 100 / filesize)

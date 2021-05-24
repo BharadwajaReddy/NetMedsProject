@@ -1,4 +1,4 @@
-package com.bharadwaja.netmeds.data.models
+package com.bharadwaja.netmeds.data
 
 sealed class ServerResponse<out T : Any> {
 
@@ -7,8 +7,8 @@ sealed class ServerResponse<out T : Any> {
 
     override fun toString(): String {
         return when (this) {
-            is Success<*> -> "Success[data=$data]"
-            is Error -> "Error[exception=$exception]"
+            is Success<*> -> "Successfully fetched data [data=$data]"
+            is Error -> "Error while fetching the data [exception=$exception]"
         }
     }
 }

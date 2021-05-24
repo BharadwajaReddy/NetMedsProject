@@ -13,6 +13,7 @@ import com.bharadwaja.netmeds.R
 import com.bharadwaja.netmeds.databinding.ActivityImageDetailsLayoutBinding
 import com.bharadwaja.netmeds.ui.viewmodels.ImageDetailsViewModel
 import com.bharadwaja.netmeds.utilities.general.CustomProgressBar
+import com.bharadwaja.netmeds.utilities.networking.CheckInternetAvailability
 
 
 import com.squareup.picasso.Picasso
@@ -65,7 +66,7 @@ class ImageDetailsActivity : AppCompatActivity(), View.OnClickListener {
         imageDetailsViewModel.downloadFile(imageurl)
         observerObj = Observer {
             progressbar.HideProgressDialog()
-            println("==here==")
+
             if (it) {
                 Toast.makeText(
                     this,
@@ -117,7 +118,12 @@ class ImageDetailsActivity : AppCompatActivity(), View.OnClickListener {
         } else if (v?.id == R.id.ib_info) {
             displayImageDetails(type, tags)
         } else if (v?.id == R.id.ib_download) {
-            downloadImageInAppSandbox(largeImageUrl.toString())
+            val checkInternet = CheckInternetAvailability()
+            if (checkInternet.isNetworkAvailbale(this)) {
+                downloadImageInAppSandbox(largeImageUrl.toString())
+            } else {
+                Toast.makeText(this, "No Internet Connection", Toast.LENGTH_LONG).show()
+            }
         } else if (v?.id == R.id.ib_close) {
             closeWindow()
         }

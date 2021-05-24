@@ -16,6 +16,7 @@ import com.bharadwaja.netmeds.databinding.ActivitySearchInPixabayLayoutBinding
 import com.bharadwaja.netmeds.ui.adaptors.DisplayImagesAdaptor
 import com.bharadwaja.netmeds.ui.viewmodels.SearchInPixabayViewModel
 import com.bharadwaja.netmeds.utilities.general.CustomProgressBar
+import com.bharadwaja.netmeds.utilities.networking.CheckInternetAvailability
 
 
 class SearchInPixabayActivity : AppCompatActivity() {
@@ -39,8 +40,14 @@ class SearchInPixabayActivity : AppCompatActivity() {
         binding.searchContent.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_GO) {
                 if (binding.searchContent.text.length > 0) {
-                    println("==go_clicked==")
-                    searchQuery(binding.searchContent.text.toString())
+
+
+                    val checkInternet = CheckInternetAvailability()
+                    if (checkInternet.isNetworkAvailbale(this)) {
+                        searchQuery(binding.searchContent.text.toString())
+                    } else {
+                        Toast.makeText(this, "No Internet Connection", Toast.LENGTH_LONG).show()
+                    }
                 } else {
                     Toast.makeText(this, "Enter text to search", Toast.LENGTH_LONG).show()
                 }

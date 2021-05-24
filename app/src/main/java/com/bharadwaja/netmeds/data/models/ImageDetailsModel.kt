@@ -6,7 +6,7 @@ import androidx.databinding.BindingAdapter
 import com.squareup.picasso.Picasso
 
 
-class ImageDetailsModel(
+data class ImageDetailsModel(
     var PreviewUrl: String,
     var LargeImageUrl: String,
     var Favorites: Int,

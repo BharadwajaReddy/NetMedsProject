@@ -2,5 +2,5 @@ package com.bharadwaja.netmeds.utilities
 
 
 
-class ImageDatabase  {
+class ImageCacheDatabase  {
 }
