@@ -20,21 +20,21 @@ import com.bharadwaja.netmeds.utilities.general.CustomProgressBar
 
 class SearchInPixabayActivity : AppCompatActivity() {
     lateinit var displayImagesAdaptor: DisplayImagesAdaptor
-    lateinit var photoList: ArrayList<ImageDetailsModel>
+    lateinit var searchList: ArrayList<ImageDetailsModel>
     lateinit var searchInPixabayViewModel: SearchInPixabayViewModel
     lateinit var observerObj: Observer<ArrayList<ImageDetailsModel>>
     lateinit var binding: ActivitySearchInPixabayLayoutBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_search_in_pixabay_layout)
-        photoList = ArrayList()
+        searchList = ArrayList()
         binding.recyclerView.setLayoutManager(
             StaggeredGridLayoutManager(
                 2,
                 StaggeredGridLayoutManager.VERTICAL
             )
         )
-        displayImagesAdaptor = DisplayImagesAdaptor(photoList, this)
+        displayImagesAdaptor = DisplayImagesAdaptor(searchList, this)
         binding.recyclerView.adapter = displayImagesAdaptor
         binding.searchContent.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_GO) {
@@ -59,12 +59,12 @@ class SearchInPixabayActivity : AppCompatActivity() {
     fun searchQuery(query: String) {
         val progressbar = CustomProgressBar(this)
         progressbar.setProgressDialog()
-        photoList.clear()
+        searchList.clear()
         searchInPixabayViewModel.getSearchResults(query)
         observerObj = Observer {
             progressbar.HideProgressDialog()
             if (it.size > 0) {
-                photoList.addAll(it)
+                searchList.addAll(it)
                 binding.noResults.visibility = GONE
                 displayImagesAdaptor.notifyDataSetChanged()
             } else {

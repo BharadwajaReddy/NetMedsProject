@@ -16,7 +16,7 @@
         android:padding="2dp">
 
         <ImageView
-            android:id="@+id/iv_preview_photo"
+            android:id="@+id/iv_original_image"
             imageurl="@{detailsModel.previewUrl}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

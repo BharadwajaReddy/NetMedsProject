@@ -29,6 +29,8 @@ class DownloadImageRepository {
     lateinit var downloadImageStatusMutableLiveData: MutableLiveData<Boolean>
     lateinit var mContext: Context
     val TAG: String = "NetworkCall"
+
+
     fun downloadImageToAppSandbox(mContextt: Context, filename: String, childPath: String) {
 
         mContext = mContextt
@@ -48,15 +50,6 @@ class DownloadImageRepository {
 
                         response.body()?.let {
                             DownloadToImages(it, filename)
-                           /* if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                                DownloadToImages(it, filename)
-                            } else {
-                                Toast.makeText(
-                                    mContext,
-                                    "Feature Built for Naugot and above versions only.",
-                                    Toast.LENGTH_LONG
-                                ).show()
-                            }*/
                         }
                     }
                 } else {

@@ -14,63 +14,14 @@ import com.bharadwaja.netmeds.ui.activities.ImageDetailsActivity
 import java.io.Serializable
 
 
-/*
-class DisplayImagesAdaptor(val photoList: ArrayList<PictureDetailsModel>, val mcontext: Context) :
-    RecyclerView.Adapter<DisplayImagesAdaptor.MyViewHolder>() {
-
-    class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val iv_preview_photo = view.findViewById<ImageView>(R.id.iv_preview_photo)
-
-
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = MyViewHolder(
-        LayoutInflater.from(parent.context)
-            .inflate(R.layout.photo_single_item_layout, parent, false)
-    )
-
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val photoListItem = photoList.get(position)
-        val picasso = Picasso.get()
-        picasso.load(photoListItem.PreviewUrl).into(holder.iv_preview_photo)
-        holder.iv_preview_photo.setOnClickListener(View.OnClickListener {
-            val startPhotoDetailsActivityIntent = Intent(
-                mcontext,
-                ImageDetailsActivity::class.java
-            )
-            startPhotoDetailsActivityIntent.putExtra(
-                "PhotoOriginalUrl",
-                photoListItem.LargeImageUrl
-            )
-            startPhotoDetailsActivityIntent.putExtra("CommentsCount", photoListItem.Comments)
-            startPhotoDetailsActivityIntent.putExtra("LikesCount", photoListItem.Likes)
-            startPhotoDetailsActivityIntent.putExtra("FavouritesCount", photoListItem.Favorites)
-            startPhotoDetailsActivityIntent.putExtra("UserName", photoListItem.userName)
-            startPhotoDetailsActivityIntent.putExtra("Type", photoListItem.Type)
-            startPhotoDetailsActivityIntent.putExtra("Tags", photoListItem.Tag)
-            mcontext.startActivity(startPhotoDetailsActivityIntent)
-        })
-
-    }
-
-    override fun getItemCount(): Int {
-        return photoList.size
-    }
-}
-
-*/
-
-
-
-
 class DisplayImagesAdaptor(
-    private val picturesList: List<ImageDetailsModel>,
+    private val ImagesInfoList: List<ImageDetailsModel>,
     context: Context
 ) :
     RecyclerView.Adapter<DisplayImagesAdaptor.ImagesViewHolder>() {
 
     val mcontext = context
-    override fun getItemCount(): Int = picturesList.size
+    override fun getItemCount(): Int = ImagesInfoList.size
 
     class ImagesViewHolder(val binding: SingleItemLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -78,33 +29,33 @@ class DisplayImagesAdaptor(
     }
 
     override fun onBindViewHolder(holder: ImagesViewHolder, position: Int) {
-        val photoListItem = picturesList.get(position)
-        holder.binding.detailsModel = photoListItem
+        val listItem = ImagesInfoList.get(position)
+        holder.binding.detailsModel = listItem
 
 
-        holder.binding.ivPreviewPhoto.setOnClickListener(View.OnClickListener {
-            val startPhotoDetailsActivityIntent = Intent(
+        holder.binding.ivOriginalImage.setOnClickListener(View.OnClickListener {
+            val startImageDetailsActivityIntent = Intent(
                 mcontext,
                 ImageDetailsActivity::class.java
             )
-            startPhotoDetailsActivityIntent.putExtra(
-                "PhotoOriginalUrl",
-                photoListItem.LargeImageUrl
+            startImageDetailsActivityIntent.putExtra(
+                "OriginalImageUrl",
+                listItem.LargeImageUrl
             )
-            startPhotoDetailsActivityIntent.putExtra(
+            startImageDetailsActivityIntent.putExtra(
                 "CommentsCount",
-                photoListItem.Comments
+                listItem.Comments
             )
-            startPhotoDetailsActivityIntent.putExtra("LikesCount", photoListItem.Likes)
-            startPhotoDetailsActivityIntent.putExtra(
+            startImageDetailsActivityIntent.putExtra("LikesCount", listItem.Likes)
+            startImageDetailsActivityIntent.putExtra(
                 "FavouritesCount",
-                photoListItem.Favorites
+                listItem.Favorites
             )
-            startPhotoDetailsActivityIntent.putExtra("UserName", photoListItem.userName)
-            startPhotoDetailsActivityIntent.putExtra("Type", photoListItem.Type)
-            startPhotoDetailsActivityIntent.putExtra("Tags", photoListItem.Tag)
+            startImageDetailsActivityIntent.putExtra("UserName", listItem.userName)
+            startImageDetailsActivityIntent.putExtra("Type", listItem.Type)
+            startImageDetailsActivityIntent.putExtra("Tags", listItem.Tag)
 
-            mcontext.startActivity(startPhotoDetailsActivityIntent)
+            mcontext.startActivity(startImageDetailsActivityIntent)
         })
     }
 

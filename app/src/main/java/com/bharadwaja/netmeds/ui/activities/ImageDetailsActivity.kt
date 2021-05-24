@@ -37,7 +37,7 @@ class ImageDetailsActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     fun initviews() {
-        largeImageUrl = intent.getStringExtra("PhotoOriginalUrl").toString()
+        largeImageUrl = intent.getStringExtra("OriginalImageUrl").toString()
         comments = intent.getIntExtra("CommentsCount", 0)
         likes = intent.getIntExtra("LikesCount", 0)
         favourites = intent.getIntExtra("FavouritesCount", 0)
@@ -46,7 +46,7 @@ class ImageDetailsActivity : AppCompatActivity(), View.OnClickListener {
         tags = intent.getStringExtra("Tags").toString()
 
         val picasso = Picasso.get()
-        picasso.load(largeImageUrl).into(binding.ivOriginalPhoto)
+        picasso.load(largeImageUrl).into(binding.ivOriginalImage)
         binding.tvComment.text = comments.toString()
         binding.tvFavourites.text = favourites.toString()
         binding.tvLikes.text = likes.toString()
