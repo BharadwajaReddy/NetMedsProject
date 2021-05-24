@@ -40,8 +40,6 @@ class SearchInPixabayActivity : AppCompatActivity() {
         binding.searchContent.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_GO) {
                 if (binding.searchContent.text.length > 0) {
-
-
                     val checkInternet = CheckInternetAvailability()
                     if (checkInternet.isNetworkAvailbale(this)) {
                         searchQuery(binding.searchContent.text.toString())
