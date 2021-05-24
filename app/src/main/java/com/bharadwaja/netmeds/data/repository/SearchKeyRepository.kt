@@ -1,11 +1,10 @@
 package com.bharadwaja.netmeds.data.repository
 
 
-import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.bharadwaja.netmeds.data.models.PictureDetailsModel
+import com.bharadwaja.netmeds.data.models.ImageDetailsModel
 import com.bharadwaja.netmeds.utilities.networking.RetrofitInterface
 import kotlinx.coroutines.*
 import retrofit2.Call
@@ -16,13 +15,12 @@ import org.json.JSONArray
 import org.json.JSONObject
 import retrofit2.Callback
 import retrofit2.Response
-import java.io.*
 
 
 class SearchKeyRepository {
 
 
-    lateinit var searchResultsMutableLiveData: MutableLiveData<ArrayList<PictureDetailsModel>>
+    lateinit var searchResultsMutableLiveData: MutableLiveData<ArrayList<ImageDetailsModel>>
 
     val TAG: String = "NetworkCall"
 
@@ -60,7 +58,7 @@ class SearchKeyRepository {
 
     private suspend fun processResponseToArrayList(response: Response<ResponseBody?>) =
         withContext(Dispatchers.IO) {
-            val searchItemsArraylist: ArrayList<PictureDetailsModel> = ArrayList()
+            val searchItemsArraylist: ArrayList<ImageDetailsModel> = ArrayList()
             val responseJSONObject = JSONObject(response.body()?.string())
             val hitsJSONArray: JSONArray = responseJSONObject.getJSONArray("hits")
 
@@ -75,7 +73,7 @@ class SearchKeyRepository {
                 val Type: String = singleHitJSONObject.getString("type")
                 val Tag: String = singleHitJSONObject.getString("tags")
                 searchItemsArraylist.add(
-                    PictureDetailsModel(
+                    ImageDetailsModel(
                         PreviewUrl,
                         LargeImageUrl,
                         Favorites,
@@ -92,7 +90,7 @@ class SearchKeyRepository {
             searchResultsMutableLiveData.postValue(searchItemsArraylist)
         }
 
-    public fun getKeySearchResults(): LiveData<ArrayList<PictureDetailsModel>> {
+    public fun getKeySearchResults(): LiveData<ArrayList<ImageDetailsModel>> {
         return searchResultsMutableLiveData
     }
 

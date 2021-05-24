@@ -17,7 +17,6 @@ import androidx.annotation.RequiresApi
 import androidx.biometric.BiometricManager
 import androidx.core.app.ActivityCompat
 import com.bharadwaja.netmeds.R
-import java.net.Authenticator
 
 class FingerPrintAuthenticationActivity : AppCompatActivity() {
     private var cancellationSignal: CancellationSignal? = null
@@ -56,7 +55,7 @@ class FingerPrintAuthenticationActivity : AppCompatActivity() {
             startActivity(startSearchActivityIntent)
             finish()
         } else {
-            setContentView(R.layout.activity_finger_print_authentication)
+            setContentView(R.layout.activity_biometric_authentication_layout)
             checkBiometricSupport()
             // create a biometric dialog on Click of button
             findViewById<Button>(R.id.start_authentication).setOnClickListener {

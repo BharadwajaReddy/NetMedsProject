@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="searchViewModel"
             type="com.bharadwaja.netmeds.ui.viewmodels.SearchInPixabayViewModel" />
@@ -23,7 +24,7 @@
             android:layout_marginBottom="2dp"
             android:background="@drawable/search_background"
             android:drawableLeft="@drawable/ic_baseline_search_24"
-            android:hint="Search here"
+            android:hint="@string/search"
             android:imeOptions="actionGo"
             android:inputType="text" />
 
@@ -32,7 +33,7 @@
             android:id="@+id/no_results"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="No results available" />
+            android:text="@string/no_results_available" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"

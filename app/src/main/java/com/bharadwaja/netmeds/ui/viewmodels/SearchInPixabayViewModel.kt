@@ -1,12 +1,10 @@
 package com.bharadwaja.netmeds.ui.viewmodels
 
 import android.app.Application
-import android.content.Context
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import com.bharadwaja.netmeds.data.models.PictureDetailsModel
+import com.bharadwaja.netmeds.data.models.ImageDetailsModel
 import com.bharadwaja.netmeds.data.repository.SearchKeyRepository
 import com.bharadwaja.netmeds.utilities.networking.CheckInternetAvailability
 
@@ -14,7 +12,7 @@ class SearchInPixabayViewModel(application: Application) : AndroidViewModel(appl
 
 
     var searchRepository: SearchKeyRepository
-    lateinit var searchResultsLivedata: LiveData<ArrayList<PictureDetailsModel>>
+    lateinit var searchResultsLivedata: LiveData<ArrayList<ImageDetailsModel>>
     val context = application
 
     init {
@@ -32,7 +30,7 @@ class SearchInPixabayViewModel(application: Application) : AndroidViewModel(appl
         }
     }
 
-    fun getSearchResultsFromRepository(): LiveData<ArrayList<PictureDetailsModel>> {
+    fun getSearchResultsFromRepository(): LiveData<ArrayList<ImageDetailsModel>> {
         return searchResultsLivedata
     }
 }
