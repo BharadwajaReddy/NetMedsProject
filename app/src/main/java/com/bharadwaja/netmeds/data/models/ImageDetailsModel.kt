@@ -17,6 +17,14 @@ data class ImageDetailsModel(
     var Tag: String
 ) {
 
+/*    private lateinit var PreviewUrl: String
+    private lateinit var LargeImageUrl: String
+    private var Favorites: Int = 0
+    private var Likes: Int = 0
+    private var Comments: Int = 0
+    private lateinit var userName: String
+    private lateinit var Type: String
+    private lateinit var Tag: String*/
 
     companion object {
         @BindingAdapter("imageurl")

@@ -4,6 +4,7 @@ package com.bharadwaja.netmeds.data.repository
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.bharadwaja.netmeds.data.ServerResponse
 import com.bharadwaja.netmeds.data.models.ImageDetailsModel
 import com.bharadwaja.netmeds.utilities.networking.RetrofitInterface
 import kotlinx.coroutines.*
@@ -72,27 +73,43 @@ class SearchKeyRepository {
                 val UserName: String = singleHitJSONObject.getString("user")
                 val Type: String = singleHitJSONObject.getString("type")
                 val Tag: String = singleHitJSONObject.getString("tags")
-                searchItemsArraylist.add(
-                    ImageDetailsModel(
-                        PreviewUrl,
-                        LargeImageUrl,
-                        Favorites,
-                        Likes,
-                        Comments,
-                        UserName,
-                        Type,
-                        Tag
-                    )
+
+                val imagedetails = ImageDetailsModel(
+                    PreviewUrl,
+                    LargeImageUrl,
+                    Favorites,
+                    Likes,
+                    Comments,
+                    UserName,
+                    Type,
+                    Tag
                 )
+
+                imagedetails.Likes = 1000
+                imagedetails.apply {
+                    this.userName = "Bharadwaja"
+                    this.Comments = 1000
+                }
+                val abcd = with(imagedetails) {
+                    userName = UserName
+                    this.Comments = Comments
+                    this.Likes = Likes
+                    val abc = imagedetails.toString()
+                    println(abc)
+                }
+                println(abcd)
+
+                searchItemsArraylist.add(imagedetails)
             }
 
-
+            // ServerResponse.Success
             searchResultsMutableLiveData.postValue(searchItemsArraylist)
         }
 
     public fun getKeySearchResults(): LiveData<ArrayList<ImageDetailsModel>> {
         return searchResultsMutableLiveData
     }
+
 
     /* fun downloadImageToAppSandbox(mContextt: Context, filename: String, childPath: String) {
 

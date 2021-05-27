@@ -29,14 +29,21 @@ class SearchInPixabayActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_search_in_pixabay_layout)
         searchList = ArrayList()
-        binding.recyclerView.setLayoutManager(
-            StaggeredGridLayoutManager(
-                2,
-                StaggeredGridLayoutManager.VERTICAL
-            )
-        )
         displayImagesAdaptor = DisplayImagesAdaptor(searchList, this)
-        binding.recyclerView.adapter = displayImagesAdaptor
+        binding.recyclerView.apply {
+            setLayoutManager(
+                StaggeredGridLayoutManager(
+                    2,
+                    StaggeredGridLayoutManager.VERTICAL
+                )
+            )
+
+            adapter = displayImagesAdaptor
+
+        }
+
+
+
         binding.searchContent.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_GO) {
                 if (binding.searchContent.text.length > 0) {
@@ -56,7 +63,8 @@ class SearchInPixabayActivity : AppCompatActivity() {
         searchInPixabayViewModel =
             ViewModelProvider(this).get(SearchInPixabayViewModel::class.java)
 
-        binding.noResults.visibility = GONE
+        binding.noResults.apply { visibility = GONE }
+
 
     }
 
@@ -70,11 +78,11 @@ class SearchInPixabayActivity : AppCompatActivity() {
             progressbar.HideProgressDialog()
             if (it.size > 0) {
                 searchList.addAll(it)
-                binding.noResults.visibility = GONE
+                binding.noResults.apply { visibility = GONE }
                 displayImagesAdaptor.notifyDataSetChanged()
             } else {
                 displayImagesAdaptor.notifyDataSetChanged()
-                binding.noResults.visibility = VISIBLE
+                binding.noResults.apply { visibility = VISIBLE }
             }
         }
         searchInPixabayViewModel.getSearchResultsFromRepository()

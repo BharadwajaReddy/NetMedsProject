@@ -60,10 +60,10 @@ class CustomProgressBar(mContext: Context) {
     }
 
     fun setProgressDialog() {
-        dialog.show()
+      //  dialog.show()
     }
 
     fun HideProgressDialog() {
-        dialog.hide()
+       // dialog.hide()
     }
 }
